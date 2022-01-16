@@ -6,7 +6,7 @@ library(GA)
 
 read_player_salaries <- function(sheet_) {
 
-  read.xlsx('player_salaries.xlsx', sheet = sheet_) %>%
+  read.xlsx('sets/player_salaries.xlsx', sheet = sheet_) %>%
     clean_names %>% 
     as_tibble %>%
     select(name, sal) %>%
@@ -23,8 +23,9 @@ optimization_function <- function(x) {
   current_solution_pool_points <- x %*% player_base$pool_points
   
   if(  
-    sum(player_base$pos[x==1] == "FWD")  != 6 |
-    sum(player_base$pos[x==1] == "DEF")  != 4 |
+    sum(player_base$pos[x==1] == "FWD")  != 11 |
+    sum(player_base$pos[x==1] == "DEF")  != 6 |
+    sum(player_base$pos[x==1] == "GLT")  != 3 |
     current_solution_salary > salary_cap
   )
     return(0) 
