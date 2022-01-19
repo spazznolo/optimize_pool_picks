@@ -7,8 +7,6 @@ library(readxl)
 #skater points table
 
 skater_points <- read.xlsx('rosproj.xlsx', sheet='Skaters') %>% 
-  clean_names() %>% 
-  as_tibble() %>% 
   mutate(
     pool_points=(3*g)+(2*a) + (2*gwg), 
     name=toupper(player)) %>%
@@ -19,8 +17,6 @@ skater_points <- read.xlsx('rosproj.xlsx', sheet='Skaters') %>%
 #goalie points table
 
 goalie_points <-read.xlsx('rosproj.xlsx', sheet='Goalies') %>% 
-  clean_names() %>% 
-  as_tibble() %>% 
   mutate(
     pool_points=(4*w)-l + otl -(0.25*ga)+(0.1*sv), 
     name=toupper(player)) %>%
